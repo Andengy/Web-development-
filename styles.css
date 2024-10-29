@@ -22,7 +22,7 @@ body {
     border: 2px solid #555;
     border-radius: 8px;
     padding: 10px;
-    width: 250px; /* Set width to match date box */
+    width: 475px; /* Set width to match date box */
     text-align: center;
 }
 
@@ -30,7 +30,7 @@ body {
     background-color: #444;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 10px 150px;
     margin: 0 5px;
     cursor: pointer;
 }
@@ -62,11 +62,11 @@ body {
     border: 2px solid #555; /* Border color */
     border-radius: 8px;
     padding: 20px;
-    width: 250px; /* Adjust width as needed */
+    width: 450px; /* Adjust width as needed */
 }
 
 .weather-today .date {
-    font-size: 20px;
+    font-size: 40px;
     margin-bottom: 10px; /* Add space below the date */
 }
 
@@ -75,7 +75,7 @@ body {
 }
 
 .weather-today .weather-text {
-    font-size: 18px;
+    font-size: 30px;
 }
 
 .weather-stats {
@@ -134,8 +134,9 @@ body {
 }
 
 .weekly-forecast .day-box .emoji {
-    font-size: 48px; /* Make emoji larger */
+    font-size: 125px; /* Make emoji larger */
     margin-top: 10px; /* Space above the emoji */
+    margin-left: -15.5px
 }
 
 footer {
