@@ -22,7 +22,7 @@ body {
     border: 2px solid #555;
     border-radius: 8px;
     padding: 10px;
-    width: 250px; /* Set width to match date box */
+    width: 425px; /* Set width to match date box */
     text-align: center;
 }
 
@@ -33,6 +33,7 @@ body {
     padding: 10px 15px;
     margin: 0 5px;
     cursor: pointer;
+    width: 250px
 }
 
 .menu button:hover {
