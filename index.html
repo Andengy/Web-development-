@@ -16,31 +16,76 @@
         <div class="icon">🌑</div>
     </div>
 
-    <div class="weather-today">
-        <div class="date">DATE</div>
-        <div class="weather-icon"></div> <!-- Placeholder for weather icon -->
-        <div class="weather-text">WEATHER TODAY (16°)</div>
-    </div>
+    <div class="weather-container">
+        <div class="weather-today">
+            <div class="date">DATE</div>
+            <div class="weather-icon"></div> <!-- Placeholder for weather icon -->
+            <div class="weather-text">Weather Today: 16°</div>
+        </div>
 
-    <div class="weather-stats">
-        <div class="stat">Humidity (Today): <span id="humidity">--</span>%</div>
-        <div class="stat">Hottest Temp (Today): <span id="hottest-temp">--</span>°</div>
-        <div class="stat">Coldest Temp (Today): <span id="coldest-temp">--</span>°</div>
-        <div class="stat">UV (Today): <span id="uv">--</span></div>
-        <div class="stat">Wind Speed (Today): <span id="windspeed">--</span> km/h</div>
-        <div class="stat">Precipitation (Today): <span id="precipitation">--</span> mm</div>
+        <div class="weather-stats">
+            <div class="stat-box">
+                <div class="stat-icon">🌡️</div>
+                <div class="stat">Humidity (Today): <span id="humidity">--</span>%</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">🔥</div>
+                <div class="stat">Hottest Temp (Today): <span id="hottest-temp">--</span>°</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">❄️</div>
+                <div class="stat">Coldest Temp (Today): <span id="coldest-temp">--</span>°</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">☀️</div>
+                <div class="stat">UV (Today): <span id="uv">--</span></div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">💨</div>
+                <div class="stat">Wind Speed (Today): <span id="windspeed">--</span> km/h</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">🌧️</div>
+                <div class="stat">Precipitation (Today): <span id="precipitation">--</span> mm</div>
+            </div>
+        </div>
     </div>
 
     <div class="weekly-forecast">
-        <div class="day">MON <div class="icon"></div> High: XX° Low: XX°</div>
-        <div class="day">TUE <div class="icon"></div> High: XX° Low: XX°</div>
-        <div class="day">WED <div class="icon"></div> High: XX° Low: XX°</div>
-        <div class="day">THU <div class="icon"></div> High: XX° Low: XX°</div>
-        <div class="day">FRI <div class="icon"></div> High: XX° Low: XX°</div>
-        <div class="day">SAT <div class="icon"></div> High: XX° Low: XX°</div>
-        <div class="day">SUN <div class="icon"></div> High: XX° Low: XX°</div>
+        <div class="day-box">
+            <div class="day-name">MON</div>
+            <div class="day-temp">High: XX° Low: XX°</div>
+        </div>
+        <div class="day-box">
+            <div class="day-name">TUE</div>
+            <div class="day-temp">High: XX° Low: XX°</div>
+        </div>
+        <div class="day-box">
+            <div class="day-name">WED</div>
+            <div class="day-temp">High: XX° Low: XX°</div>
+        </div>
+        <div class="day-box">
+            <div class="day-name">THU</div>
+            <div class="day-temp">High: XX° Low: XX°</div>
+        </div>
+        <div class="day-box">
+            <div class="day-name">FRI</div>
+            <div class="day-temp">High: XX° Low: XX°</div>
+        </div>
+        <div class="day-box">
+            <div class="day-name">SAT</div>
+            <div class="day-temp">High: XX° Low: XX°</div>
+        </div>
+        <div class="day-box">
+            <div class="day-name">SUN</div>
+            <div class="day-temp">High: XX° Low: XX°</div>
+        </div>
     </div>
 
+    <footer>
+        <p>&copy; 2024 Weather Dashboard</p>
+    </footer>
+    
     <script src="script.js"></script>
 </body>
 </html>
