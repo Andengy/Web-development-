@@ -22,7 +22,7 @@ body {
     border: 2px solid #555;
     border-radius: 8px;
     padding: 10px;
-    width: 425px; /* Set width to match date box */
+    width: 250px; /* Set width to match date box */
     text-align: center;
 }
 
@@ -33,7 +33,6 @@ body {
     padding: 10px 15px;
     margin: 0 5px;
     cursor: pointer;
-    width: 250px
 }
 
 .menu button:hover {
@@ -63,11 +62,11 @@ body {
     border: 2px solid #555; /* Border color */
     border-radius: 8px;
     padding: 20px;
-    width: 400px; /* Adjust width as needed */
+    width: 250px; /* Adjust width as needed */
 }
 
 .weather-today .date {
-    font-size: 40px;
+    font-size: 20px;
     margin-bottom: 10px; /* Add space below the date */
 }
 
@@ -76,7 +75,7 @@ body {
 }
 
 .weather-today .weather-text {
-    font-size: 40px;
+    font-size: 18px;
 }
 
 .weather-stats {
@@ -123,13 +122,20 @@ body {
 }
 
 .weekly-forecast .day-box .day-temp {
-    font-size: 16px;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items */
+    font-size: 16px; /* Adjust font size if needed */
+}
+
+.weekly-forecast .day-box .high-temp,
+.weekly-forecast .day-box .low-temp {
+    margin: 2px 0; /* Space between high and low temp */
 }
 
 .weekly-forecast .day-box .emoji {
-    font-size: 120px; /* Make emoji larger */
+    font-size: 48px; /* Make emoji larger */
     margin-top: 10px; /* Space above the emoji */
-    margin-left: -15px 
 }
 
 footer {
