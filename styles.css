@@ -62,11 +62,11 @@ body {
     border: 2px solid #555; /* Border color */
     border-radius: 8px;
     padding: 20px;
-    width: 250px; /* Adjust width as needed */
+    width: 400px; /* Adjust width as needed */
 }
 
 .weather-today .date {
-    font-size: 20px;
+    font-size: 40px;
     margin-bottom: 10px; /* Add space below the date */
 }
 
@@ -75,7 +75,7 @@ body {
 }
 
 .weather-today .weather-text {
-    font-size: 18px;
+    font-size: 40px;
 }
 
 .weather-stats {
