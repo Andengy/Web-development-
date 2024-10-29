@@ -126,8 +126,9 @@ body {
 }
 
 .weekly-forecast .day-box .emoji {
-    font-size: 36px; /* Make emoji larger */
+    font-size: 120px; /* Make emoji larger */
     margin-top: 10px; /* Space above the emoji */
+    margin-left: -15px 
 }
 
 footer {
