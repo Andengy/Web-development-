@@ -22,7 +22,7 @@ body {
     border: 2px solid #555;
     border-radius: 8px;
     padding: 10px;
-    width: 475px; /* Set width to match date box */
+    width: 675px; /* Set width to match date box */
     text-align: center;
     font-size: 40px
 }
@@ -63,7 +63,7 @@ body {
     border: 2px solid #555; /* Border color */
     border-radius: 8px;
     padding: 20px;
-    width: 450px; /* Adjust width as needed */
+    width: 650px; /* Adjust width as needed */
 }
 
 .weather-today .date {
@@ -93,7 +93,7 @@ body {
     padding: 10px;
     display: flex;
     align-items: center;
-    width: 135px; /* Adjust width to 3/4 of original */
+    width: 200px; /* Adjust width to 3/4 of original */
 }
 
 .weather-stats .stat-icon {
@@ -114,7 +114,7 @@ body {
     padding: 10px;
     margin: 10px;
     text-align: center;
-    width: 135px; /* Set width to match stat boxes */
+    width: 235px; /* Set width to match stat boxes */
 }
 
 .weekly-forecast .day-box .day-name {
