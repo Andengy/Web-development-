@@ -24,13 +24,14 @@ body {
     padding: 10px;
     width: 475px; /* Set width to match date box */
     text-align: center;
+    font-size: 40px
 }
 
 .menu button {
     background-color: #444;
     color: white;
     border: none;
-    padding: 10px 150px;
+    padding: 25px 150px;
     margin: 0 5px;
     cursor: pointer;
 }
@@ -40,8 +41,8 @@ body {
 }
 
 .moon-icon {
-    width: 30px; /* Adjust size as needed */
-    height: 30px;
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
     background-color: #ccc; /* Placeholder color for moon icon */
     border-radius: 50%; /* Circular shape */
 }
