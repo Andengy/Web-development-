@@ -92,7 +92,7 @@ body {
     padding: 10px;
     display: flex;
     align-items: center;
-    width: 180px; /* Reduce width of stat boxes */
+    width: 135px; /* Adjust width to 3/4 of original */
 }
 
 .weather-stats .stat-icon {
@@ -113,7 +113,7 @@ body {
     padding: 10px;
     margin: 10px;
     text-align: center;
-    width: 100px; /* Set width as needed */
+    width: 135px; /* Set width to match stat boxes */
 }
 
 .weekly-forecast .day-box .day-name {
@@ -123,6 +123,11 @@ body {
 
 .weekly-forecast .day-box .day-temp {
     font-size: 16px;
+}
+
+.weekly-forecast .day-box .emoji {
+    font-size: 36px; /* Make emoji larger */
+    margin-top: 10px; /* Space above the emoji */
 }
 
 footer {
