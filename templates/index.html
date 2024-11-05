@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script> <!-- Include HTMX -->
 </head>
 <body>
     <header>
@@ -22,27 +23,21 @@
     <main>
         <div class="weather-container">
             <div class="weather-left">
-                <!-- Search bar for city input -->
-                <form id="search-form" class="search-bar">
+                <!-- Search bar for city input with HTMLx -->
+                <form id="search-form" class="search-bar" hx-post="/search_location" hx-trigger="submit" hx-target="this" hx-swap="none" hx-on:afterRequest="updateWeather">
                     <input type="text" name="city" id="search-city" placeholder="Enter city" required />
                     <button type="submit">Search</button>
                 </form>
                 
-                <!-- Location choices (initially hidden) -->
-                <div id="location-list" style="display: none;">
-                    <h3>Select a location:</h3>
-                    <ul id="location-options"></ul>
-                </div>
-
                 <!-- Today's Weather Box -->
-                <div class="weather-today">
+                <div class="weather-today" id="weather-today">
                     <div class="weather-icon" id="today-weather-icon">--</div> <!-- Weather icon for today's box -->
                     <div class="weather-text">Temperature Now: <span id="current-temp">--</span>°C</div>
                 </div>
             </div>
 
             <!-- Weather Stats Boxes -->
-            <div class="weather-stats">
+            <div id="weather-stats" class="weather-stats">
                 <!-- Date Box -->
                 <div class="stat-box">
                     <div class="stat-icon">📅</div>
@@ -53,27 +48,27 @@
                     <div class="stat-icon" id="time-emoji">--</div>
                     <div class="stat">Time: <span id="time">--</span></div>
                 </div>
-                <!-- Temperature Box (formerly Humidity) -->
-                <div class="stat-box">
-                    <div class="stat-icon">🌡️</div>
-                    <div class="stat">Temperature: <span id="temperature">--</span>°C</div>
-                </div>
                 <!-- Precipitation Box -->
                 <div class="stat-box">
                     <div class="stat-icon">🌧️</div>
                     <div class="stat">Precipitation: <span id="precipitation">--</span>%</div>
                 </div>
-                <!-- Hottest Temp Box -->
+                <!-- Humidity Box -->
+                <div class="stat-box">
+                    <div class="stat-icon">💧</div>
+                    <div class="stat">Humidity: <span id="humidity">--</span>%</div>
+                </div>
+                <!-- Max Temperature Box -->
                 <div class="stat-box">
                     <div class="stat-icon">🔥</div>
                     <div class="stat">Max Temp: <span id="hottest-temp">--</span>°C</div>
                 </div>
-                <!-- Coldest Temp Box -->
+                <!-- Min Temperature Box -->
                 <div class="stat-box">
                     <div class="stat-icon">❄️</div>
                     <div class="stat">Min Temp: <span id="coldest-temp">--</span>°C</div>
                 </div>
-                <!-- Wind Speed Box (converted to m/s) -->
+                <!-- Wind Speed Box -->
                 <div class="stat-box">
                     <div class="stat-icon">💨</div>
                     <div class="stat">Wind Speed: <span id="windspeed">--</span> m/s</div>
@@ -91,7 +86,35 @@
         <p>&copy; 2024 Weather Dashboard</p>
     </footer>
 
-    <!-- Link to JavaScript file -->
-    <script src="/static/script.js"></script>
+    <script>
+        // JavaScript function to update weather data after receiving response from server
+        function updateWeather(event) {
+            console.log("updateWeather function called"); // Debugging statement
+            let data = event.detail.xhr.response;
+    
+            // If data is not a string, there's no need to parse
+            if (typeof data === 'string') {
+                try {
+                    data = JSON.parse(data);
+                } catch (e) {
+                    console.error("Error parsing data:", e);
+                    return;
+                }
+            }
+    
+            console.log("Parsed response data:", data); // Debugging statement
+            
+            document.getElementById("current-temp").innerText = data.temperature || "--";
+            document.getElementById("today-weather-icon").innerText = data.description || "--";
+            document.getElementById("date").innerText = new Date(data.date * 1000).toLocaleDateString() || "--";
+            document.getElementById("precipitation").innerText = data.precipitation || "--";
+            document.getElementById("humidity").innerText = data.humidity || "--";
+            document.getElementById("hottest-temp").innerText = data.max_temp || "--";
+            document.getElementById("coldest-temp").innerText = data.min_temp || "--";
+            document.getElementById("windspeed").innerText = data.wind_speed || "--";
+            document.getElementById("uv-index").innerText = data.uv_index || "--";
+        }
+    </script>
+    
 </body>
 </html>

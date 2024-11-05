@@ -1,99 +1,7 @@
+// JavaScript to Keep for Theme Toggle and Date/Time Update
+
 document.addEventListener("DOMContentLoaded", () => {
-    const searchForm = document.getElementById("search-form");
     const themeToggle = document.getElementById("theme-toggle");
-
-    // Mapping weather descriptions to emojis
-    const weatherEmojiMap = {
-        "clear sky": "☀️",
-        "few clouds": "🌤️",
-        "scattered clouds": "☁️",
-        "broken clouds": "☁️",
-        "shower rain": "🌧️",
-        "rain": "🌧️",
-        "thunderstorm": "⛈️",
-        "snow": "❄️",
-        "mist": "🌫️",
-        "light rain": "🌦️",
-        "overcast clouds": "☁️",
-        "haze": "🌫️",
-        "fog": "🌁"
-    };
-
-    async function fetchLocations(city) {
-        console.log("City submitted:", city);
-        try {
-            const response = await fetch("/search_location", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams({ city })
-            });
-
-            if (!response.ok) throw new Error("Failed to fetch location data.");
-            const locations = await response.json();
-            console.log("Locations received:", locations);
-            displayLocationOptions(locations);
-        } catch (error) {
-            console.error("Error fetching location data:", error);
-        }
-    }
-
-    function displayLocationOptions(locations) {
-        const locationList = document.getElementById("location-list");
-        const locationOptions = document.getElementById("location-options");
-
-        locationOptions.innerHTML = "";  // Clear previous results
-        locationList.style.display = "block";
-
-        locations.forEach(location => {
-            const listItem = document.createElement("li");
-            const button = document.createElement("button");
-            button.textContent = `${location.name}, ${location.country}`;
-            button.onclick = () => fetchWeather(location.lat, location.lon);
-            listItem.appendChild(button);
-            locationOptions.appendChild(listItem);
-        });
-    }
-
-    async function fetchWeather(lat, lon) {
-        console.log("Fetching weather for coordinates:", lat, lon);
-        try {
-            const response = await fetch(`/get_weather?lat=${lat}&lon=${lon}`);
-            if (!response.ok) throw new Error("Failed to fetch weather data.");
-            const weatherData = await response.json();
-            console.log("Weather data received:", weatherData);
-            displayWeatherData(weatherData);
-            updateDateTime();
-        } catch (error) {
-            console.error("Error fetching weather data:", error);
-        }
-    }
-
-    function displayWeatherData(data) {
-        console.log("Detailed weather data received:", data);
-
-        // Display temperature in "Today's Weather" area
-        document.querySelector(".weather-text").textContent = `Temperature Now: ${data.temperature || "--"} °C`;
-
-        // Update main stats
-        document.getElementById("temperature").textContent = `${data.humidity || "--"} %`; // Shows humidity as percentage under Temperature
-
-        // Precipitation in mm from rain or snow data
-        const precipitationMm = data.precipitation_mm ? `${data.precipitation_mm} mm` : "0 mm";
-        document.getElementById("precipitation").textContent = precipitationMm;
-
-        // Convert wind speed to m/s and update
-        const windSpeedMps = (data.wind_speed / 3.6).toFixed(2);
-        document.getElementById("windspeed").textContent = `${windSpeedMps || "--"} m/s`;
-
-        document.getElementById("max-temp").textContent = `${data.max_temp || "--"} °C`;
-        document.getElementById("min-temp").textContent = `${data.min_temp || "--"} °C`;
-        document.getElementById("uv-index").textContent = `${data.uv_index || "--"}`;
-
-        // Update emoji icon based on weather description
-        const weatherDescription = data.description ? data.description.toLowerCase() : "clear sky";
-        const emojiIcon = weatherEmojiMap[weatherDescription] || "🌈";
-        document.querySelector(".weather-icon").textContent = emojiIcon;
-    }
 
     // Update date and time using user's local time
     function updateDateTime() {
@@ -129,17 +37,28 @@ document.addEventListener("DOMContentLoaded", () => {
     // Event listener for theme toggle button
     themeToggle.addEventListener("click", toggleTheme);
 
-    // Event listener for city search form
-    searchForm.addEventListener("submit", event => {
-        event.preventDefault();
-        const city = document.getElementById("search-city").value.trim();
-        if (city) {
-            fetchLocations(city);
-        }
-    });
-
     // Initial update of date and time
     updateDateTime();
     // Set the initial theme icon
     themeToggle.textContent = document.body.classList.contains("light-theme") ? "🌞" : "🌙";
+
+    // Optional: Update the date and time periodically (e.g., every minute)
+    setInterval(updateDateTime, 60000);
+
+    function updateWeather(event) {
+        let data = event.detail.xhr.response;
+        data = JSON.parse(data); // Parse the JSON response if needed
+        console.log(data); // Debugging to check the parsed data
+        
+        document.getElementById("current-temp").innerText = data.temperature || "--";
+        document.getElementById("today-weather-icon").innerText = data.description || "--";
+        document.getElementById("date").innerText = new Date(data.date * 1000).toLocaleDateString() || "--";
+        document.getElementById("precipitation").innerText = data.precipitation || "--";
+        document.getElementById("humidity").innerText = data.humidity || "--";
+        document.getElementById("hottest-temp").innerText = data.max_temp || "--";
+        document.getElementById("coldest-temp").innerText = data.min_temp || "--";
+        document.getElementById("windspeed").innerText = data.wind_speed || "--";
+        document.getElementById("uv-index").innerText = data.uv_index || "--";
+    }
+    
 });
