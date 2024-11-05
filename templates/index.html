@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h1 class="app-name">Weather App Zephyr Group</h1>
+            <nav class="menu">
+                <button onclick="navigate('home')">HOME</button>
+                <button onclick="navigate('about')">ABOUT</button>
+                <button onclick="navigate('account')">ACCOUNT</button>
+            </nav>
+            <div class="icon moon-icon" id="theme-toggle" onclick="toggleTheme()"></div>
+        </div>
+    </header>
+
+    <main>
+        <div class="weather-container">
+            <div class="weather-left">
+                <!-- Search bar for city input -->
+                <form id="search-form" class="search-bar">
+                    <input type="text" name="city" id="search-city" placeholder="Enter city" required />
+                    <button type="submit">Search</button>
+                </form>
+                
+                <!-- Location choices (initially hidden) -->
+                <div id="location-list" style="display: none;">
+                    <h3>Select a location:</h3>
+                    <ul id="location-options"></ul>
+                </div>
+
+                <!-- Today's Weather Box -->
+                <div class="weather-today">
+                    <div class="weather-icon" id="today-weather-icon">--</div> <!-- Weather icon for today's box -->
+                    <div class="weather-text">Temperature Now: <span id="current-temp">--</span>°C</div>
+                </div>
+            </div>
+
+            <!-- Weather Stats Boxes -->
+            <div class="weather-stats">
+                <!-- Date Box -->
+                <div class="stat-box">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat">Date: <span id="date">--</span></div>
+                </div>
+                <!-- Time Box with Emoji -->
+                <div class="stat-box">
+                    <div class="stat-icon" id="time-emoji">--</div>
+                    <div class="stat">Time: <span id="time">--</span></div>
+                </div>
+                <!-- Temperature Box (formerly Humidity) -->
+                <div class="stat-box">
+                    <div class="stat-icon">🌡️</div>
+                    <div class="stat">Temperature: <span id="temperature">--</span>°C</div>
+                </div>
+                <!-- Precipitation Box -->
+                <div class="stat-box">
+                    <div class="stat-icon">🌧️</div>
+                    <div class="stat">Precipitation: <span id="precipitation">--</span>%</div>
+                </div>
+                <!-- Hottest Temp Box -->
+                <div class="stat-box">
+                    <div class="stat-icon">🔥</div>
+                    <div class="stat">Max Temp: <span id="hottest-temp">--</span>°C</div>
+                </div>
+                <!-- Coldest Temp Box -->
+                <div class="stat-box">
+                    <div class="stat-icon">❄️</div>
+                    <div class="stat">Min Temp: <span id="coldest-temp">--</span>°C</div>
+                </div>
+                <!-- Wind Speed Box (converted to m/s) -->
+                <div class="stat-box">
+                    <div class="stat-icon">💨</div>
+                    <div class="stat">Wind Speed: <span id="windspeed">--</span> m/s</div>
+                </div>
+                <!-- UV Index Box -->
+                <div class="stat-box">
+                    <div class="stat-icon">☀️</div>
+                    <div class="stat">UV Index: <span id="uv-index">--</span></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Weather Dashboard</p>
+    </footer>
+
+    <!-- Link to JavaScript file -->
+    <script src="/static/script.js"></script>
+</body>
+</html>

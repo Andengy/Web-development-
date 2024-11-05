@@ -1,7 +1,7 @@
 # app.py
 from fasthtml import common as fh
-from visualise import generate_weather_chart
-from WeatherDashboard import WeatherDashboard
+from Webpage.visualise import generate_weather_chart
+from Webpage.WeatherDashboard import WeatherDashboard
 
 app, rt = fh.fast_app()
 

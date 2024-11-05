@@ -1,0 +1,38 @@
+# weather.html (templates/weather.html)
+"""
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Dashboard - {{ weather_data.location }}</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather for {{ weather_data.location }}</h1>
+        {% if weather_data.error %}
+            <p>{{ weather_data.error }}</p>
+        {% else %}
+            <div class="stat-boxes">
+                <div class="stat-box">
+                    <h2>Temperature</h2>
+                    <p>{{ weather_data.temperature }} &#8451;</p>
+                </div>
+                <div class="stat-box">
+                    <h2>Condition</h2>
+                    <p>{{ weather_data.description }}</p>
+                </div>
+                <div class="stat-box">
+                    <h2>Humidity</h2>
+                    <p>{{ weather_data.humidity }}%</p>
+                </div>
+                <div class="stat-box">
+                    <h2>Wind Speed</h2>
+                    <p>{{ weather_data.wind_speed }} m/s</p>
+                </div>
+            </div>
+        {% endif %}
+        <a href="/">Search Again</a>
+    </div>
+</body>
+</html>
+"""
