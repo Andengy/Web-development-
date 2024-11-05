@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, Form
-from fastapi.responses import HTMLResponse, JSONResponse  # Import necessary responses
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import requests
@@ -40,7 +40,7 @@ async def read_root(request: Request):
     }
     return templates.TemplateResponse("index.html", {"request": request, "weather_data": initial_weather_data})
 
-# New Route to Handle Search Location (HTMLx-based)
+# Route to Handle Search Location (HTMLx-based)
 @app.post("/search_location", response_class=JSONResponse)
 async def search_location(city: str = Form(...)):
     weather_data = fetch_weather_data(city)
@@ -63,7 +63,7 @@ def fetch_weather_data(location: str) -> Dict[str, Any]:
             "wind_speed": weather["wind"]["speed"],
             "max_temp": weather["main"]["temp_max"],
             "min_temp": weather["main"]["temp_min"],
-            "date": weather["dt"],  # You can format this date properly
+            "date": weather["dt"],  # Unix timestamp, can be formatted in JavaScript
             "precipitation": weather.get("rain", {}).get("1h", "0"),  # Example precipitation data
             "uv_index": "--"  # Placeholder since UV index is not available in OpenWeatherMap standard API
         }

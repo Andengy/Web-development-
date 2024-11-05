@@ -1,0 +1,38 @@
+<!-- This is the partial template for updating the weather stats -->
+<div class="weather-today">
+    <div class="weather-icon" id="today-weather-icon">{{ weather_data.description }}</div> <!-- Weather icon for today's box -->
+    <div class="weather-text">Temperature Now: <span id="current-temp">{{ weather_data.temperature }}</span>°C</div>
+</div>
+
+<div class="stat-box">
+    <div class="stat-icon">📅</div>
+    <div class="stat">Date: <span id="date">{{ weather_data.date | datetimeformat }}</span></div>
+</div>
+<div class="stat-box">
+    <div class="stat-icon" id="time-emoji">--</div>
+    <div class="stat">Time: <span id="time">--</span></div>
+</div>
+<div class="stat-box">
+    <div class="stat-icon">💧</div>
+    <div class="stat">Humidity: <span id="humidity">{{ weather_data.humidity }}</span>%</div>
+</div>
+<div class="stat-box">
+    <div class="stat-icon">🌧️</div>
+    <div class="stat">Precipitation: <span id="precipitation">{{ weather_data.precipitation }}</span> mm</div>
+</div>
+<div class="stat-box">
+    <div class="stat-icon">🔥</div>
+    <div class="stat">Max Temp: <span id="hottest-temp">{{ weather_data.max_temp }}</span>°C</div>
+</div>
+<div class="stat-box">
+    <div class="stat-icon">❄️</div>
+    <div class="stat">Min Temp: <span id="coldest-temp">{{ weather_data.min_temp }}</span>°C</div>
+</div>
+<div class="stat-box">
+    <div class="stat-icon">💨</div>
+    <div class="stat">Wind Speed: <span id="windspeed">{{ weather_data.wind_speed }}</span> m/s</div>
+</div>
+<div class="stat-box">
+    <div class="stat-icon">☀️</div>
+    <div class="stat">UV Index: <span id="uv-index">{{ weather_data.uv_index }}</span></div>
+</div>

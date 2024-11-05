@@ -1,5 +1,3 @@
-// JavaScript to Keep for Theme Toggle and Date/Time Update
-
 document.addEventListener("DOMContentLoaded", () => {
     const themeToggle = document.getElementById("theme-toggle");
 
@@ -45,20 +43,57 @@ document.addEventListener("DOMContentLoaded", () => {
     // Optional: Update the date and time periodically (e.g., every minute)
     setInterval(updateDateTime, 60000);
 
-    function updateWeather(event) {
-        let data = event.detail.xhr.response;
-        data = JSON.parse(data); // Parse the JSON response if needed
-        console.log(data); // Debugging to check the parsed data
-        
-        document.getElementById("current-temp").innerText = data.temperature || "--";
-        document.getElementById("today-weather-icon").innerText = data.description || "--";
-        document.getElementById("date").innerText = new Date(data.date * 1000).toLocaleDateString() || "--";
-        document.getElementById("precipitation").innerText = data.precipitation || "--";
-        document.getElementById("humidity").innerText = data.humidity || "--";
-        document.getElementById("hottest-temp").innerText = data.max_temp || "--";
-        document.getElementById("coldest-temp").innerText = data.min_temp || "--";
-        document.getElementById("windspeed").innerText = data.wind_speed || "--";
-        document.getElementById("uv-index").innerText = data.uv_index || "--";
-    }
-    
+    // Emoji mapping for weather description
+    const weatherEmojiMap = {
+        "clear sky": "☀️",
+        "few clouds": "🌤️",
+        "scattered clouds": "☁️",
+        "broken clouds": "☁️",
+        "shower rain": "🌧️",
+        "rain": "🌧️",
+        "thunderstorm": "⛈️",
+        "snow": "❄️",
+        "mist": "🌫️",
+        "light rain": "🌦️",
+        "overcast clouds": "☁️",
+        "haze": "🌫️",
+        "fog": "🌁"
+    };
+
+    // HTMX response listener for weather data
+    document.body.addEventListener("htmx:afterRequest", (event) => {
+        if (event.detail.xhr && event.detail.xhr.response) {
+            let data = event.detail.xhr.response;
+
+            // If data is not already parsed as an object, parse it
+            if (typeof data === 'string') {
+                try {
+                    data = JSON.parse(data);
+                } catch (e) {
+                    console.error("Error parsing data:", e);
+                    return;
+                }
+            }
+
+            // Map the retrieved weather data to the appropriate HTML elements
+            document.getElementById("current-temp").innerText = data.temperature || "--";
+            
+            // Set the emoji icon based on the weather description
+            const weatherDescription = data.description ? data.description.toLowerCase() : "clear sky";
+            const emojiIcon = weatherEmojiMap[weatherDescription] || "🌈";
+            document.getElementById("today-weather-icon").innerText = emojiIcon;
+
+            document.getElementById("precipitation").innerText = data.precipitation || "--";
+            document.getElementById("humidity").innerText = data.humidity || "--";
+            document.getElementById("hottest-temp").innerText = data.max_temp || "--";
+            document.getElementById("coldest-temp").innerText = data.min_temp || "--";
+            document.getElementById("windspeed").innerText = data.wind_speed || "--";
+            document.getElementById("uv-index").innerText = data.uv_index || "--";
+
+            // Update the date format to be more readable
+            if (data.date) {
+                document.getElementById("date").innerText = new Date(data.date * 1000).toLocaleDateString() || "--";
+            }
+        }
+    });
 });
